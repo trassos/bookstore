@@ -1,2 +1,4 @@
-package com.trassos.bookstore.services;public class BookServices {
+package com.trassos.bookstore.services;
+
+public class BookServices {
 }
