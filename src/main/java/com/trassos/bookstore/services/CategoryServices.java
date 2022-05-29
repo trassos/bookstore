@@ -1,6 +1,7 @@
 package com.trassos.bookstore.services;
 
 import com.trassos.bookstore.domain.Category;
+import com.trassos.bookstore.exceptions.ObjectNotFoundException;
 import com.trassos.bookstore.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class CategoryServices {
 
     public Category findById(Long id) {
         Optional<Category> cat = categoryRepository.findById(id);
-        return cat.orElse(null);
+        return cat.orElseThrow(() -> new ObjectNotFoundException(
+                "Objeto não encontrado id: "+id+ ", Tipo: "+ Category.class.getName()));
     }
 
     //Como tratar nulos aqui?
