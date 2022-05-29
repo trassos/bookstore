@@ -19,7 +19,6 @@ public class Category implements Serializable {
     private String name;
     private String description;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Book> books = new ArrayList<>();
 

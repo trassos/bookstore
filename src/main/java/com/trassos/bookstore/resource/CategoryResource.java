@@ -1,7 +1,7 @@
 package com.trassos.bookstore.resource;
 
 import com.trassos.bookstore.domain.Category;
-import com.trassos.bookstore.repositories.CategoryRepository;
+import com.trassos.bookstore.services.CategoryServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +16,17 @@ import java.util.List;
 public class CategoryResource {
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryServices categoryServices;
 
     @GetMapping
     public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = categoryRepository.findAll();
+        List<Category> list = categoryServices.findAll();
         return ResponseEntity.ok().body(list);
     }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
-        Category cat = categoryRepository.findById(id).get();
+        Category cat = categoryServices.findById(id);
         return ResponseEntity.ok().body(cat);
     }
 }

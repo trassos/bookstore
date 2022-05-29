@@ -1,4 +1,6 @@
 package com.trassos.bookstore.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,6 +17,7 @@ public class Book  implements Serializable {
     private String author_name;
     private String text;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
