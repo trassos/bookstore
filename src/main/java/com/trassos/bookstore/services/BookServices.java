@@ -43,6 +43,11 @@ public class BookServices {
         updateData(newBook, book);
         return bookRepository.save(newBook);
     }
+    public Book updatePatch(Long id, Book book) {
+        Book newBook = findById(id);
+        updateData(newBook, book);
+        return bookRepository.save(newBook);
+    }
 
     private void updateData(Book newBook, Book book) {
         newBook.setTitle(book.getTitle());

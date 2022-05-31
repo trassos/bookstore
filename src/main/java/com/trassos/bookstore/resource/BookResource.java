@@ -44,6 +44,11 @@ public class BookResource {
         return ResponseEntity.ok().body(newBook);
     }
 
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Book> updatePatch(@PathVariable Long id, @RequestBody Book book) {
+        Book newBook = bookServices.update(id, book);
+        return ResponseEntity.ok().body(newBook);
+    }
 
 
 }
