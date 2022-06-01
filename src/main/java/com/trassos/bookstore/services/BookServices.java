@@ -30,7 +30,8 @@ public class BookServices {
     }
 
     public void delete(Long id) {
-    bookRepository.deleteById(id);
+        Book book = findById(id);
+        bookRepository.delete(book);
     }
 
     public List<Book> findAll(Long id_cat) {
@@ -53,5 +54,12 @@ public class BookServices {
         newBook.setTitle(book.getTitle());
         newBook.setAuthor_name(book.getAuthor_name());
         newBook.setText(book.getText());
+    }
+
+    public Book create(Long id_cat, Book book) {
+        book.setId(null);
+        Category cat = categoryServices.findById(id_cat);
+        book.setCategory(cat);
+        return bookRepository.save(book);
     }
 }

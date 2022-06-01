@@ -7,11 +7,15 @@ import com.trassos.bookstore.services.BookServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value="/books")
 public class BookResource {
@@ -39,16 +43,23 @@ public class BookResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Book> update(@PathVariable Long id, @RequestBody Book book) {
+    public ResponseEntity<Book> update(@PathVariable Long id, @Valid @RequestBody Book book) {
         Book newBook = bookServices.update(id, book);
         return ResponseEntity.ok().body(newBook);
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Book> updatePatch(@PathVariable Long id, @RequestBody Book book) {
+    public ResponseEntity<Book> updatePatch(@PathVariable Long id, @Valid @RequestBody Book book) {
         Book newBook = bookServices.update(id, book);
         return ResponseEntity.ok().body(newBook);
     }
 
+    @PostMapping
+    public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") Long id_cat,
+                                       @Valid @RequestBody Book book) {
+    Book newBook = bookServices.create(id_cat, book);
+    URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/books/{id}").buildAndExpand(newBook.getId()).toUri();
+    return ResponseEntity.created(uri).build();
+    }
 
 }
