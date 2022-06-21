@@ -13,4 +13,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT obj FROM Book obj WHERE obj.category.id = :id_cat ORDER BY title")
     List<Book> findAllByCategory(@Param(value = "id_cat") Long id_cat);
+
+    @Query("SELECT obj FROM Book obj ORDER BY title")
+    List<Book> findAll();
+
 }

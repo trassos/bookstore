@@ -23,6 +23,9 @@ public class BookServices {
     return bookRepository.findAll();
     }
 
+    public List<Book> findAllbyCategory(Long id_cat) {
+        return bookRepository.findAll(); }
+
     public Book findById(Long id) {
         Optional<Book> book = bookRepository.findById(id);
         return book.orElseThrow(() -> new ObjectNotFoundException(
