@@ -23,8 +23,8 @@ public class BookServices {
     return bookRepository.findAll();
     }
 
-    public List<Book> findAllbyCategory(Long id_cat) {
-        return bookRepository.findAll(); }
+    public List<Book> findAllByCategory(Long id_cat) {
+        return bookRepository.findAllByCategory(id_cat); }
 
     public Book findById(Long id) {
         Optional<Book> book = bookRepository.findById(id);
