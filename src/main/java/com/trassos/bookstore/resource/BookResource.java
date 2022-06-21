@@ -30,7 +30,7 @@ public class BookResource {
         return ResponseEntity.ok().body(listDTO);
     }
 
-    @GetMapping(value = "/books")
+    @GetMapping(value = "/allbooks")
     public ResponseEntity<List<BookDTO>> findAll() {
         List<Book> list = bookServices.findAll();
         List<BookDTO> listDTO = list.stream().map(obj -> new BookDTO(obj)).collect(Collectors.toList());
