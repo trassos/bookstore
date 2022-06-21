@@ -30,6 +30,13 @@ public class BookResource {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @GetMapping(value = "/books")
+    public ResponseEntity<List<BookDTO>> findAll() {
+        List<Book> list = bookServices.findAll();
+        List<BookDTO> listDTO = list.stream().map(obj -> new BookDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Book> findById(@PathVariable Long id) {
         Book book = bookServices.findById(id);
