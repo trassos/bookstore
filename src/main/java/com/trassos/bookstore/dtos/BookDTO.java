@@ -9,17 +9,40 @@ public class BookDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String author_name;
+
+    private String text;
+
     private Long id;
 
     private String title;
 
     public BookDTO() {
-    super();
+        super();
     }
 
     public BookDTO(Book book) {
         this.id = book.getId();
         this.title = book.getTitle();
+        this.author_name = book.getAuthor_name();
+        this.text = book.getText();
+    }
+
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
     }
 
     public Long getId() {
